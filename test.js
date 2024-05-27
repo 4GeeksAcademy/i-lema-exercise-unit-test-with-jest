@@ -5,26 +5,44 @@ test('adds 14 + 9 to equal 23', () => {
     expect(total).toBe(23);
 });
 
-test("Un euro debe ser 1.07 dolares", function() {
+test("One euro should be 1.07 dollars", function() {
+    // Importo la funcion desde app.js
+    const { fromEuroToDollar } = require('./app.js');
+
+    // Uso la función como debe ser usada
     const dollars = fromEuroToDollar(3.5);
+
+    // Si 1 euro son 1.07 dólares, entonces 3.5 euros debe ser (3.5 * 1.07)
     const expected = 3.5 * 1.07;
-    const result = fromEuroToDollar();
-    expect(fromEuroToDollar(3.5)).toBe(3.745);
-    expect(typeof result).toBe("number");
+
+    // Hago mi comparación (la prueba)
+    expect(fromEuroToDollar(3.5)).toBe(3.745); // 1 euro son 1.07 dólares, entonces 3.5 euros deberían ser = (3.5 * 1.07)
 })
 
-test("Un dólar debe ser 146.26 yen", function() {
-    const dollars = fromDollarToYen(1);
-    const expected = 1 / 1.07 * 156.5;
-    const result = fromDollarToYen();
-    expect(fromDollarToYen(1)).toBe(146.26168224299064);
-    expect(typeof result).toBe("number");
+test("1.07 dollars should be 156.5 yen", function() {
+    // Importo la funcion desde app.js
+    const { fromDollarToYen } = require('./app.js');
+
+    // Uso la función como debe ser usada
+    const yen = fromDollarToYen(1.07);
+
+    // Si 156.5 yen es 1 euro, y 1 euro es 1.07 dólares, entonces 1.07 dólares debe ser 156.5 yen
+    const expected = 1.07 / 1.07 * 156.5;
+
+    // Hago mi comparación (la prueba)
+    expect(fromDollarToYen(1.07)).toBe(156.5); // 1.07 dólares son 156.5 yen
 })
 
-test("Un yen debe ser 0.0056 libras", function() {
-    const dollars = fromYenToPound(1);
-    const expected = 1 * 0.87 / 156.5;
-    const result = fromYenToPound();
-    expect(fromYenToPound(1)).toBe(0.0055591054313099035);
-    expect(typeof result).toBe("number");
+test("1.07 dollars should be 156.5 yen", function() {
+    // Importo la funcion desde app.js
+    const { fromYenToPound } = require('./app.js');
+
+    // Uso la función como debe ser usada
+    const pound = fromYenToPound(156.5);
+
+    // Si 156.5 yen es 1 euro, y 1 euro es 0.87 pounds, entonces 156.5 yen debe ser 0.87 pound
+    const expected = 156.5 / 156.5 * 0.87;
+
+    // Hago mi comparación (la prueba)
+    expect(fromYenToPound(156.5)).toBe(0.87); // 156.5 yen son 0.87 pound
 })
